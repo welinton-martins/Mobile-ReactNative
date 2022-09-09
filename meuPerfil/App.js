@@ -16,6 +16,7 @@ class App extends Component{
         <Text>Estagio em Analise e Programacao de Sistemas</Text>
         <Text>Projetos:</Text>
         <Text>Projeto Imobiliaria</Text>
+        <Text>Hello World</Text>
       </View>
     )
   }
