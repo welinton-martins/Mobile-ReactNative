@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Pressable, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Pressable, TextInput, TouchableNativeFeedbackBase } from 'react-native';
 
 class App extends Component {
   constructor(props) {
@@ -7,7 +7,8 @@ class App extends Component {
     this.state = {
       pes: 0,
       alt: 0,
-      imc: 'Classificacao',
+      imc: 0,
+      result: 'Classificacao'
     };
 
     this.calcular = this.calcular.bind(this);
@@ -15,7 +16,21 @@ class App extends Component {
 
   calcular() {
     this.setState({ imc: this.state.pes / (this.state.alt * 2) });
- 
+    
+    let imc = this.state.imc;
+
+    if (imc < 18.5)
+      this.setState({ result: "Abaixo do Peso" });
+    else if (imc >= 18.5 && imc <= 24.9)
+      this.setState({ result: "Peso Normal" });
+    else if (imc >= 25 && imc <= 29.9)
+      this.setState({ result: "Sobrepeso" });
+    else if (imc >= 30 && imc <= 34.9)
+      this.setState({ result: "Obesidade Grau I" });
+    else if (imc >= 35 && imc <= 39.9)
+      this.setState({ result: "Obesidade Grau II" });
+    else if (imc >= 40)
+      this.setState({ result: "Obesidade Grau III ou Morbida" });
   }
 
   render() {
@@ -41,7 +56,7 @@ class App extends Component {
           <Text style={styles.textoBotao}>Verificar</Text>
         </Pressable>
 
-        <Text style={styles.resultado}>{this.state.imc}</Text>
+        <Text style={styles.resultado}>{this.state.result}</Text>
       </View>
     );
   }
