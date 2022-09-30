@@ -5,17 +5,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      n1: 0,
-      n2: 0,
-      result: '___',
+      alc: 0,
+      gas: 0,
+      res: 'Resultado',
     };
 
-    this.multiplicar = this.multiplicar.bind(this);
+    this.calcular = this.calcular.bind(this);
   }
 
-  multiplicar() {
-    // if (this.state.n1 )
-    this.setState({ result: this.state.n1 * this.state.n2 });
+  calcular() {
+    this.setState({ res: (this.state.alc / this.state.gas) > 0.7 ? 'O derivado da cana-de-açúcar é o melhor para abastecer' : 'A gasolina é melhor para abastecer' });
   }
 
   render() {
@@ -28,20 +27,20 @@ class App extends Component {
         <TextInput
           style={styles.input}
           placeholder="Preco do Alcool"
-          onChangeText={(n) => this.setState({ n1: n })}
+          onChangeText={(alc) => this.setState({ alc: alc })}
         />
 
         <TextInput
           style={styles.input}
           placeholder="Preco da Gasolina"
-          onChangeText={(n) => this.setState({ n2: n })}
+          onChangeText={(gas) => this.setState({ gas: gas })}
         />
 
-        <Pressable style={styles.botao} onPress={() => this.multiplicar()}>
+        <Pressable style={styles.botao} onPress={() => this.calcular()}>
           <Text style={styles.textoBotao}>Verificar</Text>
         </Pressable>
 
-        <Text style={styles.resultado}>Resultado</Text>
+        <Text style={styles.resultado}>{this.state.res}</Text>
       </View>
     );
   }
