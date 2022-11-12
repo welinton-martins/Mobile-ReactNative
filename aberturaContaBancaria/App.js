@@ -46,14 +46,14 @@ class App extends Component {
           <Text style={styles.title}>Abertura de Conta</Text>
           <View style={styles.inputContainer}>
             <Text style={styles.heading}>Nome:</Text>
-            <TextInput
+            <TextInput style={styles.textInput}
               onChangeText={(nome) => this.setState({ nome: nome })}
             />
           </View>
 
           <View style={styles.inputContainer}>
             <Text style={styles.heading}>Idade:</Text>
-            <TextInput
+            <TextInput style={styles.textInput1}
               onChangeText={(idade) => this.setState({ idade: idade })}
             />
           </View>
@@ -61,6 +61,7 @@ class App extends Component {
           <View style={styles.inputContainer}>
             <Text style={styles.heading}>Sexo</Text>
             <Picker
+              style={styles.picker}
               selectedValue={this.state.sexo}
               onValueChange={(sexo) => this.setState({ sexo: sexo })}>
               <Picker.Item key={1} value={1} label="Masculino" />
@@ -71,6 +72,8 @@ class App extends Component {
           <View style={styles.inputContainer} >
             <Text style={styles.heading}>Escolaridade</Text>
             <Picker
+              style={styles.picker1}
+              selectedValue={this.state.escol}
               onValueChange={(escol) => this.setState({ escol: escol })}>
               <Picker.Item key={1} value={1} label="Ensino Medio" />
               <Picker.Item key={1} value={2} label="Superor" />
@@ -79,7 +82,7 @@ class App extends Component {
 
           <View style={styles.inputContainer} >
             <Text style={styles.heading}>Limite</Text>
-            <Slider
+            <Slider style={styles.slider}
               minimumValue={0}
               maximumValue={1000}
               onValueChange={(limite) => this.setState({ limite: limite })}
@@ -100,7 +103,7 @@ class App extends Component {
             <Text style={styles.textoBotao}>Confirmar</Text>
           </Pressable>
 
-          <Text style={styles.title1}>Dados informados:</Text>
+          <Text style={styles.title1}>Dados informados!:</Text>
           <Text style={styles.heading}>Nome: {this.state.dados.nome}</Text>
           <Text style={styles.heading}>Idade: {this.state.dados.idade}</Text>
           <Text style={styles.heading}>Sexo: {this.state.dados.sexo}</Text>
@@ -143,7 +146,7 @@ class App extends Component {
     },
     limite: {
       textAlign: 'center',
-      fontSize: 15
+      fontSize: 15,
     },
     resultado: {
       fontSize: 30,
@@ -159,10 +162,9 @@ class App extends Component {
       borderWidth: 3,
     },
     botao: {
-      width: 350,
-      height: 50,
-      marginTop: 20,
-      marginLeft: 20,
+      width: '90%',
+      height: '5%',
+      margin: '5%',
       backgroundColor: 'green',
     },
     textoBotao: {
@@ -170,6 +172,27 @@ class App extends Component {
       textAlignVertical: 'center',
       fontSize: 30,
     },
+    slider: {
+      width: '70%',
+      margin: '3%',
+    },
+    textInput: {
+      backgroundColor: '#eeeeee',
+      width: '70%',
+      margin: '1%',
+    },
+    textInput1: {
+      backgroundColor: '#eeeeee',
+      width: '20%',
+      margin: '1%',
+    },
+    picker: {
+      width: '30%'
+    }
+    ,
+    picker1: {
+      width: '40%'
+    }
   });
 
 export default App;
