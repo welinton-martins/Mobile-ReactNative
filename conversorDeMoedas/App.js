@@ -1,54 +1,56 @@
 import React, { Component } from 'react';
-import { Picker } from '@react-native-picker/picker';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Dimensions, Pressable } from 'react-native';
+
+import {Picker} from '@react-native-picker/picker';
 
 class App extends Component {
   constructor(props) {
     super(props); 
+    this.state = {
+      result: 'Resultado\n______'
+    }
   }
-  return() {
+  render() {
     return( 
       <View style={styles.container}>
-        <Text>Conversor de Moedas Dolar, Real e Euro</Text>
-        <Text>De:</Text>
-        <TextInput
-          value='oi'
-          onChangeText={(valor) => this.setState({ valor: valor })}
-          style={styles.input}
-        />
-        <Text>Para:</Text>
-        <TextInput
-          value='oi'
-          onChangeText={(valor) => this.setState({ valor: valor })}
-          style={styles.input}
-        />      
-        <Text style={styles.resultado}>Resultado</Text>
-      </View>
-     )
-import { View, Text, TextInput, Image, StyleSheet, ScrollView, Dimensions } from 'react-native';
-
-class App extends Component {
-  render() {
-    return(
-      <View style={styles.container}>
         <Text style={styles.header}>Conversor de Moedas Dolar, Real e Euro</Text>
-        <TextInput style={styles.textInput}
-          onChangeText={(nome) => this.setState({ nome: nome})}
-        />
-        <ScrollView style={styles.scroll}
-          scrollEnabled={true} horizontal={false}
-          showsVerticalScrollIndicator={true}>
-          <View style={styles.card}>
-            <Text style={styles.profissao}>Desenvolvedor Backend</Text>
-            <Text style={styles.salario}>Salario: R$ 3000,00</Text>
-            <Text style={styles.descricao}>Descricao: Mollit esse sint est quis esse qui anim ipsum sunt ea Lorem exercitation.</Text>
-            <Text style={styles.contato}>Contato:  sit sit cupidatat ullamco enim aute.</Text>
-          </View>
-        </ScrollView>
+        <Text style={styles.text}>
+          Valor: 
+          <TextInput
+            onChangeText={(valor) => this.setState({ valor: valor })}
+            style={styles.input}
+          />
+        </Text>
+        
+        <Text style={styles.text}>
+          De:
+          <Picker style={styles.tipo}>
+            <Picker.Item Key={1} value={1} label="Dolar" />
+            <Picker.Item Key={2} value={2} label="Real" />
+            <Picker.Item Key={3} value={3} label="Euro" />
+          </Picker>
+        </Text>
+        
+        <Text style={styles.text}>
+          Para:        
+          <Picker style={styles.tipo}>
+            <Picker.Item Key={1} value={1} label="Dolar" />
+            <Picker.Item Key={2} value={2} label="Real" />
+            <Picker.Item Key={3} value={3} label="Euro" />
+          </Picker>
+        </Text>
+       
+       <Pressable>
+          <Text style={styles.botao}>Converter</Text>
+        </Pressable>
+        <Text style={styles.result}>
+          {this.state.result}
+        </Text>
       </View>
-    )
+    );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -62,18 +64,33 @@ const styles = StyleSheet.create({
     width: 300,
     fontSize: 30
   },
-  resultado: {
-    color: '#fff',
+  text: {
     fontSize: 20,
-});
-
-export default App;
+  },
+  botao: {
+    fontSize: 20,
+    padding: 5,
+    width: Dimensions.get('window').width * .8,
+    textAlign: 'center',
+    backgroundColor: 'blue'
+  },
+  tipo: {
+    width: Dimensions.get('window').width * .7,
+    padding: 3,
+  },
+  result: {
+    color: '#0f0',
+    fontSize: 20,
+    marginTop: '5%',
+    textAlign: 'center'
+  },
   profissao: {
     fontSize: 35,
     color: 'purple',
   },
   header: {
-    fontSize: 50,
+    fontSize: 35,
+    color: '#f80',
     marginTop: '5%',
     marginBottom: '5%'
   },
